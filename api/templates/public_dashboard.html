@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Production Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/public_dashboard.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="d-flex">
+        <div class="navigation">
+        <ul>
+            <li>
+                <a href="">
+                    <span class="icon_logo"><img src="https://i.postimg.cc/1zZg1sp0/cosem-logo-removebg-preview.png" alt="" width="50" height="40"></span>
+                    <span class="title">Cosem</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <span class="title">Customer</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+                    <span class="title">Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                    <span class="title">Help</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                    <span class="title">Setting</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <span class="title">Password</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                    <span class="title">Sign Out</span>
+                </a>
+            </li>
+        </ul>
+        <div class="toggle"></div>
+    </div>
+         <div class="container-fluid p-4" style="margin-left: 200px;">
+            <header class="mb-4">
+                <div class="jumbotron text-white bg-gradient-primary p-4 rounded">
+                    <div class="container">
+                        <h1 class="display-4">Crop Production Dashboard</h1>
+                        <p class="lead">Visualize and analyze crop production data effectively</p>
+                    </div>
+                </div>
+            </header>
+            <section class="charts row">
+                <div class="grid-container">
+                    <div class="chart-container">
+                        <iframe src="{{ dash_urls[1] }}"></iframe>
+                    </div>
+                    <div class="chart-container">
+                        <iframe src="{{ dash_urls[2] }}"  ></iframe>
+                    </div>
+                    <div class="chart-container large-chart">
+                        <iframe src="{{ dash_urls[0] }}"></iframe>
+                    </div>
+                </div>
+            </section>
+            <section class="map-section mb-4">
+                <div id="map" class="map-container"></div>
+            </section>
+            <section class="summary">
+                <h2 class="text-center">Summary Statistics</h2>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Crop</th>
+                            <th>Production (tons)</th>
+                            <th>Trend (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wheat</td>
+                            <td>1200</td>
+                            <td>5%</td>
+                        </tr>
+                        <tr>
+                            <td>Rice</td>
+                            <td>1900</td>
+                            <td>3%</td>
+                        </tr>
+                        <tr>
+                            <td>Corn</td>
+                            <td>3000</td>
+                            <td>7%</td>
+                        </tr>
+                        <tr>
+                            <td>Soybeans</td>
+                            <td>500</td>
+                            <td>-2%</td>
+                        </tr>
+                        <tr>
+                            <td>Barley</td>
+                            <td>800</td>
+                            <td>4%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="{{ url_for('static', filename='js/public_dashboard.js') }}"></script>
+</body>
+</html>
