@@ -1,5 +1,25 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api/index" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    { "src": "/private_dashboard", "dest": "/api/index.py" },
+    { "src": "/", "dest": "/api/index.py" }
+  ],
+  "functions": {
+    "api/index.py": {
+      "memory": 256,
+      "maxDuration": 10
+    }
+  },
+  "ignore": [
+    "node_modules",
+    ".*",
+    "cereal_data.csv",  
+    "note.txt"
   ]
 }

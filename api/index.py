@@ -100,4 +100,4 @@ def public_dashboard():
     return render_template('public_dashboard.html', dash_urls=dash_urls)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8001)
+    app.run(debug=True, port=8002)
