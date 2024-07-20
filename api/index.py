@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, redirect, flash, request, jsonify
+from flask import Flask, render_template
 import requests
 #import geopandas as gpd
 import random
@@ -10,7 +10,7 @@ import dash
 from dash import dcc, html
 
 app = Flask(__name__, template_folder="templates")
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'thisisasecretkey')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'sqrt')
 
 # Function to fetch GeoJSON data
 
