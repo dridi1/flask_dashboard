@@ -1,13 +1,5 @@
-.vercel
-*.log
 *.pyc
-__pycache__
-
-# Environments 
-.env 
-.venv 
-env/ 
-venv/ 
-ENV/ 
-env.bak/ 
-venv.bak/ 
+__pycache__/
+.env
+note.txt
+*.csv  # Only if the CSV file is not needed at runtime
